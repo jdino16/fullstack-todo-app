@@ -321,7 +321,7 @@ export default function Page() {
                 InputProps={{
                   startAdornment: <DateRange sx={{ color: '#94a3b8', mr: 1 }} />,
                   sx: { color: 'white' }
-                }}
+              }}
               />
               <TextField
                 label="End Date"

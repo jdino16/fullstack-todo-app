@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ['latin'] });
 const orbitron = Orbitron({ subsets: ['latin'], variable: '--font-orbitron' });
 
 export const metadata = {
-  title: "NEO-TODO Manager",
+  title: "TODO Manager",
   description: "Cyberpunk-inspired TODO App with Next.js and MUI",
 };
 
