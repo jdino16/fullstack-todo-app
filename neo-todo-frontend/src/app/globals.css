@@ -1,42 +1,221 @@
+/* globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --darker: #0a0a12;
+  --dark: #12121b;
+  --dark-gray: #1e1e2e;
+  --gray: #8b8b9f;
+  --light-gray: #c1c1d7;
+  --accent: #0ea5e9;
+  --primary: #ff0099;
+  --secondary: #00ffcc;
+  --gradient-primary: linear-gradient(135deg, var(--primary), var(--accent));
+  --gradient-secondary: linear-gradient(135deg, var(--accent), var(--secondary));
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
 body {
-  max-width: 100vw;
+  color: white;
+  background: var(--darker);
   overflow-x: hidden;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Cosmic Gradient Background */
+.bg-cosmic-gradient {
+  background: radial-gradient(ellipse at bottom, var(--darker) 0%, var(--dark) 100%);
+  min-height: 100vh;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+/* Stars background animation */
+.stars-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s infinite alternate;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+.shooting-star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.1),
+              0 0 0 8px rgba(255,255,255,0.1),
+              0 0 20px rgba(255,255,255,1);
+  animation: shooting-star 10s linear infinite;
+  top: 10%;
+  left: -100px;
+  transform: rotate(-45deg);
+}
+
+.shooting-star::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255,255,255,1), transparent);
+}
+
+@keyframes shooting-star {
+  0% {
+    transform: translateX(0) translateY(0) rotate(-45deg);
+    opacity: 1;
   }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(1000px) translateY(-500px) rotate(-45deg);
+    opacity: 0;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px var(--primary);
+  }
+  100% {
+    box-shadow: 0 0 20px var(--primary);
+  }
+}
+
+.pulse-animation {
+  animation: pulse 2s infinite;
+}
+
+.float-animation {
+  animation: float 4s ease-in-out infinite;
+}
+
+.glow-animation {
+  animation: glow 1.5s alternate infinite;
+}
+
+.neon-text {
+  text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary), 0 0 15px var(--primary);
+}
+
+/* Custom MUI components */
+.MuiPaper-root {
+  background-color: var(--dark-gray) !important;
+  color: white !important;
+}
+
+.MuiButton-contained {
+  background: var(--gradient-primary) !important;
+  transition: all 0.3s ease !important;
+}
+
+.MuiButton-contained:hover {
+  background: var(--gradient-secondary) !important;
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.5) !important;
+  transform: translateY(-2px);
+}
+
+.MuiTextField-root .MuiOutlinedInput-root {
+  color: white !important;
+  fieldset {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+  }
+  &:hover fieldset {
+    border-color: var(--accent) !important;
+  }
+}
+
+.MuiInputLabel-root {
+  color: var(--gray) !important;
+}
+
+.MuiSelect-icon {
+  color: var(--gray) !important;
+}
+
+/* 3D card effect */
+.card-3d {
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+  &:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(5deg) translateZ(10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Float animations with different speeds */
+.animate-float-slow {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.animate-float-fast {
+  animation: float 4s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+/* Pulse animation with slow speed */
+.animate-pulse-slow {
+  animation: pulse 3s infinite;
 }
