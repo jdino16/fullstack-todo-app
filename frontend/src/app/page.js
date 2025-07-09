@@ -1,4 +1,3 @@
-// app/page.js
 'use client';
 import {
   Box, Button, Checkbox, Container, FormControl, InputLabel, MenuItem,
@@ -105,7 +104,7 @@ export default function Page() {
 
   return (
     <Container maxWidth="md" sx={{ py: 4, position: 'relative', zIndex: 1 }}>
-      {/* Header with animated title */}
+
       <Box sx={{ 
         textAlign: 'center', 
         mb: 4,
@@ -126,7 +125,6 @@ export default function Page() {
         </Typography>
       </Box>
 
-      {/* CREATE/EDIT FORM */}
       <Grow in={true}>
         <Paper elevation={6} sx={{ 
           p: 3, 
@@ -240,7 +238,7 @@ export default function Page() {
         </Paper>
       </Grow>
 
-      {/* FILTERS */}
+
       <Fade in={true} timeout={800}>
         <Paper elevation={6} sx={{ 
           p: 3, 
@@ -347,7 +345,6 @@ export default function Page() {
         </Paper>
       </Fade>
 
-      {/* TODO LIST */}
       <Box>
         <Typography variant="h6" gutterBottom sx={{ 
           color: '#ff0099',
@@ -481,7 +478,7 @@ export default function Page() {
         )}
       </Box>
 
-      {/* PAGINATION */}
+  
       {todos.length > 0 && (
         <Box display="flex" justifyContent="center" mt={4}>
           <Pagination

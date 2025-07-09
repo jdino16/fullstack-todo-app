@@ -1,4 +1,3 @@
-// app/layout.js
 import { Inter, Orbitron } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'] });
